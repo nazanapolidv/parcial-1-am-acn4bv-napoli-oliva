@@ -1,118 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@drawable/bg_degradado"
     tools:context=".MainActivity">
 
-    <!-- Contenedor general en vertical -->
     <LinearLayout
-        android:id="@+id/mainContainer"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
-        <!-- HEADER -->
+        <!-- Titulo -->
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cartelera de Estrenos"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_orange_light"
-            android:layout_gravity="center"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/tvSubtitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cine Independiente Boedo · Temporada 2025"
-            android:textSize="16sp"
+            android:textSize="26sp"
             android:textColor="@android:color/white"
-            android:layout_gravity="center"
-            android:paddingBottom="16dp" />
+            android:layout_marginBottom="24dp" />
 
-        <!-- INTRO -->
         <TextView
-            android:id="@+id/tvIntro"
+            android:id="@+id/tvDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descubrí los próximos estrenos del cine independiente, con historias únicas y fuera de lo común. Todas las funciones se proyectan en sala única con butacas limitadas."
-            android:textColor="@android:color/white"
-            android:padding="8dp"
-            android:background="@android:color/darker_gray" />
+            android:text="Esta aplicación te permite agregar, listar y buscar películas de una cartelera de cine independiente ubicada en el Barrio de Boedo * 2025."
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:background="#E0E0E0"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp" />
 
         <!-- FORMULARIO -->
-        <LinearLayout
-            android:id="@+id/formulario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical">
-
-            <EditText
-                android:id="@+id/etTitulo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Título"
-                android:inputType="text"
-                android:padding="8dp"/>
-
-            <EditText
-                android:id="@+id/etAnio"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Año"
-                android:inputType="number"
-                android:padding="8dp"/>
-
-            <EditText
-                android:id="@+id/etGenero"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Género"
-                android:inputType="text"
-                android:padding="8dp"/>
-
-            <Button
-                android:id="@+id/btnAgregar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Agregar"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <!-- BUSCADOR -->
         <EditText
-            android:id="@+id/etBusqueda"
+            android:id="@+id/etTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Buscar película..."
-            android:layout_marginTop="12dp"
-            android:padding="8dp"
-            android:inputType="text" />
+            android:hint="Título de pelicula"
+            android:inputType="text"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="12dp" />
 
-        <!-- LISTA DINÁMICA -->
+        <EditText
+            android:id="@+id/etAnio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Año"
+            android:inputType="number"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etGenero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Género"
+            android:inputType="text"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Boton -->
+        <Button
+            android:id="@+id/btnBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar Película"
+            android:backgroundTint="#1976D2"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Contenedor de peliculas -->
         <LinearLayout
             android:id="@+id/listaPeliculas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="16dp" />
+            android:padding="8dp"
+            android:background="#1AFFFFFF"
+            android:layout_marginBottom="32dp" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

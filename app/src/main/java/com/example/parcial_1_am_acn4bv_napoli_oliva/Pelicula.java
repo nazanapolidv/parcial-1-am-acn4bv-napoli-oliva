@@ -5,12 +5,14 @@ public class Pelicula {
     private String titulo;
     private int anio;
     private String genero;
+    private int imagen;
 
-    public Pelicula(int id, String titulo, int anio, String genero){
+    public Pelicula(int id, String titulo, int anio, String genero, int imagen){
         this.id = id;
         this.titulo = titulo;
         this.anio = anio;
         this.genero = genero;
+        this.imagen = imagen;
     }
 
     public int getId(){
@@ -27,6 +29,10 @@ public class Pelicula {
 
     public String getGenero(){
         return genero;
+    }
+
+    public int getImagen(){
+        return imagen;
     }
 
     public String getDescripcion(){
