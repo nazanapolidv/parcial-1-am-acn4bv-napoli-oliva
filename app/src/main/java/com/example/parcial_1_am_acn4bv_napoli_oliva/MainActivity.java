@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,15 +28,24 @@ public class MainActivity extends AppCompatActivity {
 
         // Creo el Array de Peliculas
         peliculas = new ArrayList<>();
-        peliculas.add(new Pelicula(2, "Batman Begins", 2005, "Acción", R.drawable.batmanbegin));
-        peliculas.add(new Pelicula(3, "Ready Player One", 2018, "Ciencia Ficción", R.drawable.readyplayer));
-        peliculas.add(new Pelicula(6, "Matrix", 1999, "Ciencia Ficción", R.drawable.matrix));
-        peliculas.add(new Pelicula(1, "Kill Bill", 2003, "Acción", R.drawable.killbill));
-        peliculas.add(new Pelicula(4, "Scott Pilgrim vs the World", 2010, "Comedia / Acción", R.drawable.scottpilgrim));
-        peliculas.add(new Pelicula(5, "Duro de Matar 4", 2007, "Acción", R.drawable.durodematar));
-        peliculas.add(new Pelicula(9, "La Naranja Mecánica", 1971, "Drama / Distopía", R.drawable.naranja));
-        peliculas.add(new Pelicula(8, "Shingeki no Kyoshin: The Last Attack", 2023, "Anime / Acción", R.drawable.shingeki));
-        peliculas.add(new Pelicula(7, "Akira", 1988, "Animación / Ciencia Ficción", R.drawable.akira));
+        peliculas.add(new Pelicula(2, "Batman Begins", 2005, "Acción", R.drawable.batmanbegin,
+                "La historia del origen de Batman, desde su infancia traumática."));
+        peliculas.add(new Pelicula(3, "Ready Player One", 2018, "Ciencia Ficción", R.drawable.readyplayer,
+                "En un futuro distópico, un joven compite en un universo virtual lleno de desafíos."));
+        peliculas.add(new Pelicula(6, "Matrix", 1999, "Ciencia Ficción", R.drawable.matrix,
+                "Neo descubre que la realidad es una simulación y se une a la resistencia."));
+        peliculas.add(new Pelicula(1, "Kill Bill", 2003, "Acción", R.drawable.killbill,
+                "Una ex-asesina busca venganza contra su antiguo equipo y su líder."));
+        peliculas.add(new Pelicula(4, "Scott Pilgrim vs the World", 2010, "Comedia / Acción", R.drawable.scottpilgrim,
+                "Scott Pilgrim debe enfrentarse a los siete malvados exnovios de Ramona."));
+        peliculas.add(new Pelicula(5, "Duro de Matar 4", 2007, "Acción", R.drawable.durodematar,
+                "John McClane vuelve a la acción."));
+        peliculas.add(new Pelicula(9, "La Naranja Mecánica", 1971, "Drama / Distopía", R.drawable.naranja,
+                "En un futuro distópico, Alex y su banda cometen actos violentos."));
+        peliculas.add(new Pelicula(8, "Shingeki no Kyoshin: The Last Attack", 2023, "Anime / Acción", R.drawable.shingeki,
+                "La humanidad lucha contra gigantes devoradores de personas."));
+        peliculas.add(new Pelicula(7, "Akira", 1988, "Animación / Ciencia Ficción", R.drawable.akira,
+                "En un Tokio post-apocalíptico, Tetsuo desarrolla poderes destructivos."));
 
         // Llamo a mostrar peliculas
         mostrarPeliculas(peliculas);
@@ -103,6 +113,16 @@ public class MainActivity extends AppCompatActivity {
 
             // Agregar la tarjeta al contenedor
             listaPeliculas.addView(tarjeta);
+
+            // Interaccion / Evento al tocar una tarjeta
+            tarjeta.setOnClickListener(v -> {
+                Toast.makeText(
+                        this,
+                        p.getDescripcionCorta(),
+                        Toast.LENGTH_LONG
+                ).show();
+            });
+
         }
     }
 

@@ -6,13 +6,15 @@ public class Pelicula {
     private int anio;
     private String genero;
     private int imagen;
+    private String descripcionCorta;
 
-    public Pelicula(int id, String titulo, int anio, String genero, int imagen){
+    public Pelicula(int id, String titulo, int anio, String genero, int imagen, String descripcionCorta){
         this.id = id;
         this.titulo = titulo;
         this.anio = anio;
         this.genero = genero;
         this.imagen = imagen;
+        this.descripcionCorta = descripcionCorta;
     }
 
     public int getId(){
@@ -35,6 +37,9 @@ public class Pelicula {
         return imagen;
     }
 
+    public String getDescripcionCorta() {
+        return descripcionCorta;
+    }
     public String getDescripcion(){
         return titulo + " (" + anio + ") - Genero: " + genero;
     }
