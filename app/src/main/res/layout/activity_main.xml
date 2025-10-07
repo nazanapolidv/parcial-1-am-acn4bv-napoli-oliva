@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:padding="16dp"
+        android:padding="@dimen/padding_general"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -25,9 +25,9 @@
             android:id="@+id/txtTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cartelera de Estrenos"
-            android:textColor="#FFFFFF"
-            android:textSize="26sp"
+            android:text="@string/titulo"
+            android:textColor="@color/colorTextoPrincipal"
+            android:textSize="@dimen/text_size_titulo"
             android:textStyle="bold"
             android:shadowColor="#AA000000"
             android:shadowDx="1"
@@ -38,9 +38,9 @@
             android:id="@+id/txtSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cine Independiente Boedo · Temporada 2025"
-            android:textColor="#DDEEFF"
-            android:textSize="16sp"
+            android:text="@string/subtitulo"
+            android:textColor="@color/colorTextoSecundario"
+            android:textSize="@dimen/text_size_subtitulo"
             android:layout_marginTop="4dp" />
 
     </LinearLayout>
@@ -62,10 +62,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Buscar película..."
+            android:hint="@string/hint_buscar"
             android:background="@drawable/rounded_edittext"
             android:padding="10dp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorBuscar"
             android:textColorHint="#CCCCCC"
             android:inputType="text"
             android:drawableLeft="@android:drawable/ic_menu_search" />

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">parcial-1-am-acn4bv-napoli-oliva</string>
+    <string name="titulo">Cartelera de Estrenos</string>
+    <string name="subtitulo">Cine Independiente Boedo · Temporada 2025</string>
+    <string name="hint_buscar">Buscar película...</string>
+    <string name="btn_agregar">Agregar</string>
 </resources>
