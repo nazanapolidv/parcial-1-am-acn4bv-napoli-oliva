@@ -74,7 +74,7 @@
         android:id="@+id/btnVolver"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Volver a la cartelera"
+        android:text="@string/btn_volver"
         android:backgroundTint="@color/colorBuscar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
