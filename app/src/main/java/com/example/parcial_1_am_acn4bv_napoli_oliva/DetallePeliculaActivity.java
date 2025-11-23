@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import com.bumptech.glide.Glide;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 public class DetallePeliculaActivity extends AppCompatActivity {
 
@@ -19,35 +20,52 @@ public class DetallePeliculaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pelicula);
 
-        // Recibir los datos
-        Bundle extras = getIntent().getExtras();
-        if (extras != null){
-            String titulo = extras.getString("EXTRA_TITULO");
-            int anio = extras.getInt("EXTRA_ANIO");
-            String genero = extras.getString("EXTRA_GENERO");
-            String urlImagen = extras.getString("EXTRA_IMAGEN_URL");
-            String descripcionCorta = extras.getString("EXTRA_DESCRIPCION_CORTA");
+        TextView txtTitulo = findViewById(R.id.detalleTitulo);
+        TextView txtDatos = findViewById(R.id.detalleDatos);
+        TextView txtDescripcion = findViewById(R.id.detalleDescripcion);
+        ImageView imgPoster = findViewById(R.id.detalleImagen);
+        Button btnVolver = findViewById(R.id.btnVolver);
 
-            // Obtener referencias
-            TextView txtTitulo = findViewById(R.id.detalleTitulo);
-            TextView txtDatos = findViewById(R.id.detalleDatos);
-            TextView txtDescripcion = findViewById(R.id.detalleDescripcion);
-            ImageView imgPoster = findViewById(R.id.detalleImagen);
-            Button btnVolver = findViewById(R.id.btnVolver);
+        // Recuperar el objeto Pelicula completo
+        Pelicula pelicula = (Pelicula) getIntent().getSerializableExtra("PELICULA_SELECCIONADA");
 
-            // Asignar valores
-            txtTitulo.setText(titulo);
-            txtDatos.setText(genero + " (" + anio + ")");
-            txtDescripcion.setText(descripcionCorta);
-            // Glide para cargar la imagen desde la URL
+        if (pelicula != null) {
+
+            // datos cargados por Glide
+            txtTitulo.setText(pelicula.getTitulo());
+            txtDatos.setText(pelicula.getGenero() + " (" + pelicula.getAnio() + ")");
+
             Glide.with(this)
-                    .load(urlImagen)
+                    .load(pelicula.getUrlImagen())
                     .into(imgPoster);
 
+            cargarDescripcionRemota(pelicula.getUrlDescripcion(), pelicula.getTitulo(), txtDescripcion);
+            ;
             btnVolver.setOnClickListener(v -> {
-                finish(); // cierra Activity y vuelve a la anterior (MainActivity)
+                finish();
             });
         }
+    }
 
+    private void cargarDescripcionRemota(String url, String tituloPelicula, TextView targetTextView) {
+
+        // Muestra un mensaje temporal mientras carga
+        targetTextView.setText("Cargando descripción...");
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        // Crear la petición de String
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+            // Listener de respuesta exitosa
+            response -> {
+                String descripcionLarga = "La pelicula '" + tituloPelicula + "' trata sobre una historia epica de venganza en el espacio, donde el protagonista debe luchar contra su destino. Esta descripción es dinámica, cargada desde: " + url;
+                    targetTextView.setText(descripcionLarga);
+                    },
+                // Listener de error
+                error -> {
+                    targetTextView.setText("Error al cargar la descripción. Mostrando URL de fallback.");
+                    Toast.makeText(this, "Error de red: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                });
+
+        queue.add(stringRequest);
     }
 }

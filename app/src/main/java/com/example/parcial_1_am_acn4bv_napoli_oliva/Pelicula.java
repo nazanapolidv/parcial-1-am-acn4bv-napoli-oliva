@@ -1,20 +1,21 @@
 package com.example.parcial_1_am_acn4bv_napoli_oliva;
+import java.io.Serializable;
 
-public class Pelicula {
+public class Pelicula implements Serializable {
     private int id;
     private String titulo;
     private int anio;
     private String genero;
     private String urlImagen;
-    private String descripcionCorta;
+    private String urlDescripcion;
 
-    public Pelicula(int id, String titulo, int anio, String genero, String urlImagen, String descripcionCorta){
+    public Pelicula(int id, String titulo, int anio, String genero, String urlImagen, String urlDescripcion){
         this.id = id;
         this.titulo = titulo;
         this.anio = anio;
         this.genero = genero;
         this.urlImagen = urlImagen;
-        this.descripcionCorta = descripcionCorta;
+        this.urlDescripcion = urlDescripcion;
     }
 
     public int getId(){
@@ -37,11 +38,10 @@ public class Pelicula {
         return urlImagen;
     }
 
-    public String getDescripcionCorta() {
-        return descripcionCorta;
+    public String getUrlDescripcion() {
+        return urlDescripcion;
     }
-    public String getDescripcion(){
-        return titulo + " (" + anio + ") - Genero: " + genero;
-    }
+
+    // public String getDescripcion(){ return titulo + " (" + anio + ") - Genero: " + genero; }
 
 }

@@ -31,24 +31,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Creo el Array de Peliculas
         peliculas = new ArrayList<>();
-        peliculas.add(new Pelicula(2, "Batman Begins", 2005, "Acción", "https://i.imgur.com/G53tV2m.jpeg",
-                "La historia del origen de Batman, desde su infancia traumática."));
-        peliculas.add(new Pelicula(3, "Ready Player One", 2018, "Ciencia Ficción", "https://i.imgur.com/hT0oV9Z.jpeg",
-                "En un futuro distópico, un joven compite en un universo virtual lleno de desafíos."));
-        peliculas.add(new Pelicula(6, "Matrix", 1999, "Ciencia Ficción", "https://i.imgur.com/8zR5xW9.jpeg",
-                "Neo descubre que la realidad es una simulación y se une a la resistencia."));
-        peliculas.add(new Pelicula(1, "Kill Bill", 2003, "Acción", "https://i.imgur.com/q2XwF2T.jpeg",
-                "Una ex-asesina busca venganza contra su antiguo equipo y su líder."));
-        peliculas.add(new Pelicula(4, "Scott Pilgrim vs the World", 2010, "Comedia / Acción", "https://i.imgur.com/YhG437g.jpeg",
-                "Scott Pilgrim debe enfrentarse a los siete malvados exnovios de Ramona."));
-        peliculas.add(new Pelicula(5, "Duro de Matar 4", 2007, "Acción", "https://i.imgur.com/x0qS73L.jpeg",
-                "John McClane vuelve a la acción."));
-        peliculas.add(new Pelicula(9, "La Naranja Mecánica", 1971, "Drama / Distopía", "https://i.imgur.com/D4sT9Z1.jpeg",
-                "En un futuro distópico, Alex y su banda cometen actos violentos."));
-        peliculas.add(new Pelicula(8, "Shingeki no Kyoshin: The Last Attack", 2023, "Anime / Acción", "https://i.imgur.com/rS7z9y3.jpeg",
-                "La humanidad lucha contra gigantes devoradores de personas."));
-        peliculas.add(new Pelicula(7, "Akira", 1988, "Animación / Ciencia Ficción", "https://i.imgur.com/XqN4Q5z.jpeg",
-                "En un Tokio post-apocalíptico, Tetsuo desarrolla poderes destructivos."));
+        // Reemplazo la descripción corta por una URL de simulación
+        peliculas.add(new Pelicula(2, "Batman Begins", 2005, "Acción", "https://www.originalfilmart.com/cdn/shop/products/batman_begins_2005_advance_original_film_art_9922c5af-d6bb-4f81-8487-19a4428f8600_5000x.jpg?v=1654194335",
+                "https://api.simulacion.com/peliculas/batmanbegins/descripcion"));
+        peliculas.add(new Pelicula(3, "Ready Player One", 2018, "Ciencia Ficción", "https://www.originalfilmart.com/cdn/shop/products/ready_player_one_2017_advance_original_film_art_5000x.jpg?v=1621459988",
+                "https://api.simulacion.com/peliculas/readyplayerone/descripcion"));
+        peliculas.add(new Pelicula(6, "Matrix", 1999, "Ciencia Ficción", "https://www.tuposter.com/pub/media/catalog/product/cache/71d04d62b2100522587d43c930e8a36b/m/a/matrix_posters.png",
+                "https://api.simulacion.com/peliculas/matrix/descripcion"));
+        peliculas.add(new Pelicula(1, "Kill Bill", 2003, "Acción", "https://www.originalfilmart.com/cdn/shop/products/KillBillvol1_2003_french_original_film_art_5000x.jpg?v=1617373568",
+                "https://api.simulacion.com/peliculas/killbill/descripcion"));
+        peliculas.add(new Pelicula(4, "Scott Pilgrim vs the World", 2010, "Comedia / Acción", "https://static.posters.cz/image/750/8320.jpg",
+                "https://api.simulacion.com/peliculas/scottpilgrim/descripcion"));
+        peliculas.add(new Pelicula(5, "Duro de Matar 4", 2007, "Acción", "https://cinefreaks.net/2023/wp-content/uploads/2007/08/Duro-de-matar-4.0-El-ultimo-vaquero-02.jpg",
+                "https://api.simulacion.com/peliculas/durodematar/descripcion"));
+        peliculas.add(new Pelicula(9, "La Naranja Mecánica", 1971, "Drama / Distopía", "https://www.originalfilmart.com/cdn/shop/files/a_clockwork_orange_1972_linen_x_rated_original_film_art_f_1600x.webp?v=1746466043",
+                "https://api.simulacion.com/peliculas/naranjamecanica/descripcion"));
+        peliculas.add(new Pelicula(8, "Shingeki no Kyoshin: The Last Attack", 2023, "Anime / Acción", "https://m.media-amazon.com/images/M/MV5BNjM4YWRmYmMtODdhNS00YzM4LWFiZDktYjJkN2U5MGQ4NmUwXkEyXkFqcGc@._V1_.jpg",
+                "https://api.simulacion.com/peliculas/shingeki/descripcion"));
+        peliculas.add(new Pelicula(7, "Akira", 1988, "Animación / Ciencia Ficción", "https://http2.mlstatic.com/D_NQ_NP_704441-MLA73743224227_012024-O.webp",
+                "https://api.simulacion.com/peliculas/akira/descripcion"));
 
         // Llamo a mostrar peliculas
         mostrarPeliculas(peliculas);
@@ -125,12 +126,8 @@ public class MainActivity extends AppCompatActivity {
                 // Crear el intent
                 Intent intent = new Intent(this, DetallePeliculaActivity.class);
 
-                // Usar extras para enviar los datos
-                intent.putExtra("EXTRA_TITULO", p.getTitulo());
-                intent.putExtra("EXTRA_ANIO", p.getAnio());
-                intent.putExtra("EXTRA_GENERO", p.getGenero());
-                intent.putExtra("EXTRA_IMAGEN_URL", p.getUrlImagen());
-                intent.putExtra("EXTRA_DESCRIPCION_CORTA", p.getDescripcionCorta());
+                // Pasamos el objeto Pelicula completo
+                intent.putExtra("PELICULA_SELECCIONADA", p);
 
                 // Iniciar activity
                 startActivity(intent);
