@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.bumptech.glide.Glide;
 
 public class DetallePeliculaActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class DetallePeliculaActivity extends AppCompatActivity {
             String titulo = extras.getString("EXTRA_TITULO");
             int anio = extras.getInt("EXTRA_ANIO");
             String genero = extras.getString("EXTRA_GENERO");
-            int imagenId = extras.getInt("EXTRA_IMAMGEN");
+            String urlImagen = extras.getString("EXTRA_IMAGEN_URL");
             String descripcionCorta = extras.getString("EXTRA_DESCRIPCION_CORTA");
 
             // Obtener referencias
@@ -38,7 +39,10 @@ public class DetallePeliculaActivity extends AppCompatActivity {
             txtTitulo.setText(titulo);
             txtDatos.setText(genero + " (" + anio + ")");
             txtDescripcion.setText(descripcionCorta);
-            imgPoster.setImageResource(imagenId);
+            // Glide para cargar la imagen desde la URL
+            Glide.with(this)
+                    .load(urlImagen)
+                    .into(imgPoster);
 
             btnVolver.setOnClickListener(v -> {
                 finish(); // cierra Activity y vuelve a la anterior (MainActivity)

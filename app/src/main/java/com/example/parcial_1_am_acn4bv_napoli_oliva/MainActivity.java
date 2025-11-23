@@ -12,6 +12,8 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,23 +31,23 @@ public class MainActivity extends AppCompatActivity {
 
         // Creo el Array de Peliculas
         peliculas = new ArrayList<>();
-        peliculas.add(new Pelicula(2, "Batman Begins", 2005, "Acción", R.drawable.batmanbegin,
+        peliculas.add(new Pelicula(2, "Batman Begins", 2005, "Acción", "https://i.imgur.com/G53tV2m.jpeg",
                 "La historia del origen de Batman, desde su infancia traumática."));
-        peliculas.add(new Pelicula(3, "Ready Player One", 2018, "Ciencia Ficción", R.drawable.readyplayer,
+        peliculas.add(new Pelicula(3, "Ready Player One", 2018, "Ciencia Ficción", "https://i.imgur.com/hT0oV9Z.jpeg",
                 "En un futuro distópico, un joven compite en un universo virtual lleno de desafíos."));
-        peliculas.add(new Pelicula(6, "Matrix", 1999, "Ciencia Ficción", R.drawable.matrix,
+        peliculas.add(new Pelicula(6, "Matrix", 1999, "Ciencia Ficción", "https://i.imgur.com/8zR5xW9.jpeg",
                 "Neo descubre que la realidad es una simulación y se une a la resistencia."));
-        peliculas.add(new Pelicula(1, "Kill Bill", 2003, "Acción", R.drawable.killbill,
+        peliculas.add(new Pelicula(1, "Kill Bill", 2003, "Acción", "https://i.imgur.com/q2XwF2T.jpeg",
                 "Una ex-asesina busca venganza contra su antiguo equipo y su líder."));
-        peliculas.add(new Pelicula(4, "Scott Pilgrim vs the World", 2010, "Comedia / Acción", R.drawable.scottpilgrim,
+        peliculas.add(new Pelicula(4, "Scott Pilgrim vs the World", 2010, "Comedia / Acción", "https://i.imgur.com/YhG437g.jpeg",
                 "Scott Pilgrim debe enfrentarse a los siete malvados exnovios de Ramona."));
-        peliculas.add(new Pelicula(5, "Duro de Matar 4", 2007, "Acción", R.drawable.durodematar,
+        peliculas.add(new Pelicula(5, "Duro de Matar 4", 2007, "Acción", "https://i.imgur.com/x0qS73L.jpeg",
                 "John McClane vuelve a la acción."));
-        peliculas.add(new Pelicula(9, "La Naranja Mecánica", 1971, "Drama / Distopía", R.drawable.naranja,
+        peliculas.add(new Pelicula(9, "La Naranja Mecánica", 1971, "Drama / Distopía", "https://i.imgur.com/D4sT9Z1.jpeg",
                 "En un futuro distópico, Alex y su banda cometen actos violentos."));
-        peliculas.add(new Pelicula(8, "Shingeki no Kyoshin: The Last Attack", 2023, "Anime / Acción", R.drawable.shingeki,
+        peliculas.add(new Pelicula(8, "Shingeki no Kyoshin: The Last Attack", 2023, "Anime / Acción", "https://i.imgur.com/rS7z9y3.jpeg",
                 "La humanidad lucha contra gigantes devoradores de personas."));
-        peliculas.add(new Pelicula(7, "Akira", 1988, "Animación / Ciencia Ficción", R.drawable.akira,
+        peliculas.add(new Pelicula(7, "Akira", 1988, "Animación / Ciencia Ficción", "https://i.imgur.com/XqN4Q5z.jpeg",
                 "En un Tokio post-apocalíptico, Tetsuo desarrolla poderes destructivos."));
 
         // Llamo a mostrar peliculas
@@ -78,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
             // Imagen
             ImageView img = new ImageView(this);
-            img.setImageResource(p.getImagen());
+            // Glide para cargar la imagen desde la URL
+            Glide.with(this)
+                    .load(p.getUrlImagen())
+                    .into(img);
             img.setAdjustViewBounds(true);
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
             img.setLayoutParams(new LinearLayout.LayoutParams(
@@ -124,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("EXTRA_TITULO", p.getTitulo());
                 intent.putExtra("EXTRA_ANIO", p.getAnio());
                 intent.putExtra("EXTRA_GENERO", p.getGenero());
-                intent.putExtra("EXTRA_IMAGEN", p.getImagen());
+                intent.putExtra("EXTRA_IMAGEN_URL", p.getUrlImagen());
                 intent.putExtra("EXTRA_DESCRIPCION_CORTA", p.getDescripcionCorta());
 
                 // Iniciar activity
