@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -114,13 +115,20 @@ public class MainActivity extends AppCompatActivity {
             // Agregar la tarjeta al contenedor
             listaPeliculas.addView(tarjeta);
 
-            // Interaccion / Evento al tocar una tarjeta
+            // Interaccion / Evento al tocar una tarjeta (nueva version)
             tarjeta.setOnClickListener(v -> {
-                Toast.makeText(
-                        this,
-                        p.getDescripcionCorta(),
-                        Toast.LENGTH_LONG
-                ).show();
+                // Crear el intent
+                Intent intent = new Intent(this, DetallePeliculaActivity.class);
+
+                // Usar extras para enviar los datos
+                intent.putExtra("EXTRA_TITULO", p.getTitulo());
+                intent.putExtra("EXTRA_ANIO", p.getAnio());
+                intent.putExtra("EXTRA_GENERO", p.getGenero());
+                intent.putExtra("EXTRA_IMAGEN", p.getImagen());
+                intent.putExtra("EXTRA_DESCRIPCION_CORTA", p.getDescripcionCorta());
+
+                // Iniciar activity
+                startActivity(intent);
             });
 
         }
