@@ -18,6 +18,10 @@ public class Pelicula implements Serializable {
         this.urlDescripcion = urlDescripcion;
     }
 
+    // constructor vacio para firebase
+    public Pelicula() {
+    }
+
     public int getId(){
         return id;
     }
