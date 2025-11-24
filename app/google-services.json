@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "331036564517",
+    "project_id": "cine-boedo",
+    "storage_bucket": "cine-boedo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331036564517:android:eb27242e56491b1ed973cc",
+        "android_client_info": {
+          "package_name": "com.example.parcial_1_am_acn4bv_napoli_oliva"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG5uAkpkezpLUS0sK3xULO4RLCQXQjnxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
