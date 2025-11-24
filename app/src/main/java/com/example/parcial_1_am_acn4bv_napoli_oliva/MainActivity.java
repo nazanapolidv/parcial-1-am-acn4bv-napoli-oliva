@@ -1,6 +1,7 @@
 package com.example.parcial_1_am_acn4bv_napoli_oliva;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         listaPeliculas = findViewById(R.id.listaPeliculas);
         inputBusqueda = findViewById(R.id.inputBusqueda);
 
+        // Botón para ir a Favoritos
+        Button btnIrFavoritos = findViewById(R.id.btnIrFavoritos);
+
+        btnIrFavoritos.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, FavoritosActivity.class);
+            startActivity(intent);
+        });
         // Creo el Array de Peliculas
         peliculas = new ArrayList<>();
         // Reemplazo la descripción corta por una URL de simulación
@@ -146,5 +154,4 @@ public class MainActivity extends AppCompatActivity {
         }
         mostrarPeliculas(filtradas);
     }
-
 }

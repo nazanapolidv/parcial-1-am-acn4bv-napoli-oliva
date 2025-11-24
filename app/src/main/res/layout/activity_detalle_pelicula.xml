@@ -48,6 +48,15 @@
             android:layout_marginTop="4dp"
             tools:text="Acción · 2025" />
 
+            <Button
+                android:id="@+id/btnFavorito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar a Favoritos"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorBuscar"
+                android:textColor="@color/colorTextoPrincipal" />
+
     </LinearLayout>
 
     <ScrollView

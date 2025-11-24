@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.bumptech.glide.Glide;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,6 +25,7 @@ public class DetallePeliculaActivity extends AppCompatActivity {
         TextView txtDescripcion = findViewById(R.id.detalleDescripcion);
         ImageView imgPoster = findViewById(R.id.detalleImagen);
         Button btnVolver = findViewById(R.id.btnVolver);
+        Button btnFavorito = findViewById(R.id.btnFavorito);
 
         // Recuperar el objeto Pelicula completo
         Pelicula pelicula = (Pelicula) getIntent().getSerializableExtra("PELICULA_SELECCIONADA");
@@ -44,25 +45,41 @@ public class DetallePeliculaActivity extends AppCompatActivity {
             btnVolver.setOnClickListener(v -> {
                 finish();
             });
+
+            // ---FIREBASE---
+            btnFavorito.setOnClickListener(v -> {
+                btnFavorito.setEnabled(false);
+                btnFavorito.setText("Guardando...");
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                // Guardamos la pelicula en la coleccion"favoritos"
+                db.collection("favoritos")
+                        .add(pelicula)
+                        .addOnSuccessListener(documentReference -> {
+                            Toast.makeText(this, "¡Tu lista de favoritos se actualizo!", Toast.LENGTH_SHORT).show();
+                            btnFavorito.setText("Agregado a Favoritos");
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            btnFavorito.setEnabled(true);
+                            btnFavorito.setText("Intentar de nuevo");
+                        });
+            });
         }
     }
 
     private void cargarDescripcionRemota(String url, String tituloPelicula, TextView targetTextView) {
-
-        // Muestra un mensaje temporal mientras carga
         targetTextView.setText("Cargando descripción...");
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        // Crear la petición de String
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-            // Listener de respuesta exitosa
-            response -> {
-                String descripcionLarga = "La pelicula '" + tituloPelicula + "' trata sobre una historia epica de venganza en el espacio, donde el protagonista debe luchar contra su destino. Esta descripción es dinámica, cargada desde: " + url;
+                response -> {
+                    String descripcionLarga = "La pelicula '" + tituloPelicula + "' trata sobre una historia epica de venganza en el espacio... (Texto simulado desde: " + url + ")";
                     targetTextView.setText(descripcionLarga);
-                    },
-                // Listener de error
+                },
                 error -> {
-                    targetTextView.setText("Error al cargar la descripción. Mostrando URL de fallback.");
+                    targetTextView.setText("Error al cargar descripción.");
                     Toast.makeText(this, "Error de red: " + error.getMessage(), Toast.LENGTH_LONG).show();
                 });
 
