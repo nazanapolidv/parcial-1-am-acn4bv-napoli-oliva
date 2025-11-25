@@ -39,25 +39,47 @@ public class DetallePeliculaActivity extends AppCompatActivity {
 
             btnVolver.setOnClickListener(v -> finish());
 
+            // Agregar a favoritos com validacion
             btnFavorito.setOnClickListener(v -> {
                 btnFavorito.setEnabled(false);
-                btnFavorito.setText("Guardando...");
+                btnFavorito.setText("Verificando...");
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                // Guarda la pelicula en favoritos
+                // Ahora se valida si existe esa pelicula en la lista con id
                 db.collection("favoritos")
-                        .add(pelicula)
-                        .addOnSuccessListener(documentReference -> {
-                            Toast.makeText(this, "¡Tu lista de favoritos se actualizo!", Toast.LENGTH_SHORT).show();
-                            btnFavorito.setText("Agregado a Favoritos");
-                        })
-                        .addOnFailureListener(e -> {
-                            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            btnFavorito.setEnabled(true);
-                            btnFavorito.setText("Intentar de nuevo");
+                        .whereEqualTo("id", pelicula.getId())
+                        .get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                if (!task.getResult().isEmpty()) {
+                                    Toast.makeText(this, "Ya agregaste esta película", Toast.LENGTH_SHORT).show();
+                                    btnFavorito.setText("Ya agregada");
+                                } else {
+                                    guardarEnFirebase(db, pelicula, btnFavorito);
+                                }
+                            } else {
+                                Toast.makeText(this, "Error al verificar", Toast.LENGTH_SHORT).show();
+                                btnFavorito.setEnabled(true);
+                                btnFavorito.setText("Reintentar");
+                            }
                         });
             });
         }
+    }
+
+    private void guardarEnFirebase(FirebaseFirestore db, Pelicula p, Button btn) {
+        btn.setText("Guardando...");
+        db.collection("favoritos")
+                .add(p)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(this, "¡Tus favoritos se actualizaron!", Toast.LENGTH_SHORT).show();
+                    btn.setText("Agregado a Favoritos");
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    btn.setEnabled(true);
+                    btn.setText("Intentar de nuevo");
+                });
     }
 }
