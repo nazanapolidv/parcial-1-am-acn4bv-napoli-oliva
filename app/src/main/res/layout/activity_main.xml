@@ -25,13 +25,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/titulo"
-            android:textColor="@color/colorTextoPrincipal"
-            android:textSize="@dimen/text_size_titulo"
+            android:textColor="@color/colorAcento"
+            android:textSize="36sp"
             android:textStyle="bold"
-            android:shadowColor="#AA000000"
+            android:shadowColor="#FF000000"
             android:shadowDx="1"
             android:shadowDy="1"
-            android:shadowRadius="4" />
+            android:shadowRadius="2" />
 
         <TextView
             android:id="@+id/txtSubtitulo"
@@ -39,7 +39,8 @@
             android:layout_height="wrap_content"
             android:text="@string/subtitulo"
             android:textColor="@color/colorTextoSecundario"
-            android:textSize="@dimen/text_size_subtitulo"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="4dp" />
 
     </LinearLayout>
@@ -63,7 +64,7 @@
             android:hint="@string/hint_buscar"
             android:background="@drawable/rounded_edittext"
             android:padding="10dp"
-            android:textColor="@color/colorBuscar"
+            android:textColor="@color/colorTextoSecundario"
             android:textColorHint="#CCCCCC"
             android:inputType="text"
             android:drawableLeft="@android:drawable/ic_menu_search" />
@@ -72,12 +73,15 @@
 
     <Button
         android:id="@+id/btnIrFavoritos"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ver Mis Favoritos"
-        android:backgroundTint="@color/colorBuscar"
+        android:backgroundTint="@color/colorBotonNeutro"
         android:textColor="@color/colorTextoPrincipal"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintTop_toBottomOf="@id/searchLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

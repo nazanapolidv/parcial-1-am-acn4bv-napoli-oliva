@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="padding_general">16dp</dimen>
-    <dimen name="text_size_titulo">26sp</dimen>
-    <dimen name="text_size_subtitulo">16sp</dimen>
+    <dimen name="text_size_titulo">32sp</dimen>
+    <dimen name="text_size_subtitulo">18sp</dimen>
 </resources>

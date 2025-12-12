@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorFondoPrincipal">#121212</color>
+    <color name="colorFondoSecundario">#1E1E1E</color>
     <color name="colorTextoPrincipal">#FFFFFF</color>
-    <color name="colorTextoSecundario">#DDEEFF</color>
-    <color name="colorBuscar">#FF9800</color>
+    <color name="colorTextoSecundario">#A0A0A0</color>
+    <color name="colorAcento">#E50914</color>
+    <color name="colorBotonNeutro">#333333</color>
 </resources>

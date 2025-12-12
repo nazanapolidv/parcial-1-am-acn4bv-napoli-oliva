@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="Agregar a Favoritos"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/colorBuscar"
+                android:backgroundTint="@color/colorInteractivo"
                 android:textColor="@color/colorTextoPrincipal" />
 
     </LinearLayout>
@@ -84,7 +84,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/btn_volver"
-        android:backgroundTint="@color/colorBuscar"
+        android:backgroundTint="#333333"
+        android:textColor="@color/colorTextoPrincipal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
